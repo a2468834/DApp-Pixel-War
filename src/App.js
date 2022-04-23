@@ -2,15 +2,14 @@ import './App.css';
 import { TwitterPicker } from 'react-color'
 import { useState,useEffect } from 'react';
 import SmartContract from './utils/contract.js';
-import { useTable } from 'react-table'
 
 
 const CANVAS_SIZE = 15
 
 function App() {
+  const [account, setAccount] = useState()
   const [selectedColor, setSelectedColor] = useState('#22194d')
   const [coordinate, setCoordinate] = useState([0,0])
-  const [account, setAccount] = useState()
   const [canvas,setCanvas] = useState([])
   const [smartContract,setSmartContract] = useState()
 
@@ -66,20 +65,19 @@ function App() {
     }
   }
 
-  function handleDraw(row,col){
+  async function handleDraw(row,col){
     
-    // setCanvas(prev=>[...prev,prev[row][col]=selectedColor])
     const color = selectedColor.replace('#','0x')
     const index = row*CANVAS_SIZE + col
-    const _canvas = canvas
-    _canvas[row][col] = selectedColor
-    console.log("||",_canvas)
-    setCanvas(_canvas)
+    // const _canvas = canvas
+    // _canvas[row][col] = selectedColor
+    // setCanvas(_canvas)
 
     if(!smartContract){
       alert("Please connect to wallet first")
     }
-    smartContract.draw(index,color)
+    const result = await smartContract.draw(index,color)
+    alert(result)
     
     
   }
