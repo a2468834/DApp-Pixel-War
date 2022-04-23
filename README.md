@@ -13,6 +13,14 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ## Smart Contract
+* This contract is now deploy on rinkeby [0x41F32E231B6677A6A276049bcca8ebFb8b801a8F](https://rinkeby.etherscan.io/address/0x41F32E231B6677A6A276049bcca8ebFb8b801a8F)
+
+* If you want deploy the smart contract by yourself, please replace the following ***contract_address (src/utils/contract.js***) with your smart contract address
+
+![](https://i.imgur.com/8oD11rC.png)
+
+
+
 
 ### `npm run build`
 

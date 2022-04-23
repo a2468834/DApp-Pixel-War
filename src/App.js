@@ -31,53 +31,30 @@ function App() {
   useEffect(()=>{
     let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
     if(smartContract){
-      smartContract.getCanvas().then(result=>{
-        console.log("result",result)
-        for(let i =0; i<result.length; i++){
-          const _row = Math.floor(i / CANVAS_SIZE)
-          const _col = i % CANVAS_SIZE
-          if(result[i]!=='0x000000'){
-            arr[_row][_col] = result[i].replace('0x','#')
-          }          
-        }
-        setCanvas(arr)
-      })   
+      /** ======== TODO 2 ======== */
     }
   },[smartContract])
 
-  async function checkIfConnect(){
-    const {ethereum} = window
-    const accouts = await ethereum.request({method: 'eth_accounts'})
-    if(accouts.length>0){
-      setAccount(accouts[0])
-    }
-  }
+  
 
   function connect2Wallet(){
-    const { ethereum } = window
-    if(ethereum){
-      console.log("has metamask")
-      ethereum.request({method: 'eth_requestAccounts'}).then(result=>{
-        setAccount(result[0])
-      })
-    } else {
-      console.log("Please install metamask")
-    }
+    /** ======== TODO 1 ======== */
   }
+
+  async function checkIfConnect(){
+    /** ======== TODO 1-1 ======== */
+
+}
 
   async function handleDraw(row,col){
     
     const color = selectedColor.replace('#','0x')
     const index = row*CANVAS_SIZE + col
-    // const _canvas = canvas
-    // _canvas[row][col] = selectedColor
-    // setCanvas(_canvas)
-
+    
     if(!smartContract){
       alert("Please connect to wallet first")
     }
-    const result = await smartContract.draw(index,color)
-    alert(result)
+    /** ======= TODO 3 ======== */
     
     
   }

@@ -10,22 +10,15 @@ export default class SmartContract{
         this.abi = CANVAS.abi
     }
     async draw(index, color){
-        const connectedContract = new ethers.Contract(this.contract_address,this.abi,this.signer)
-        
         let message = 'Draw success'
+        /** ======= TODO 3-1 ======== */
 
-        try {
-            await connectedContract.draw(index, color)
-        } catch ({error}) {
-            message=error.message.split('reverted: ')[1]
-        }
+
         return message
     }
 
     async getCanvas(){
-        const connectedContract = new ethers.Contract(this.contract_address,this.abi,this.provider)
-        const result = await connectedContract.getCanvas()
-        return result
+       /** TODO 2-1 */
     }
 
     async _checkDrawEvent(index,color){
@@ -40,4 +33,3 @@ export default class SmartContract{
     }
 }
 
-// module.e SmartContract
