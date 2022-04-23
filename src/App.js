@@ -31,18 +31,28 @@ function App() {
   useEffect(()=>{
     let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
     if(smartContract){
-      /** ======== TODO 2 ======== */
+      smartContract.getCanvas().then(result=>{
+        console.log("result",result)
+        for(let i =0; i<result.length; i++){
+          const _row = Math.floor(i / CANVAS_SIZE)
+          const _col = i % CANVAS_SIZE
+          if(result[i]!=='0x000000'){
+            arr[_row][_col] = result[i].replace('0x','#')
+          }          
+        }
+        setCanvas(arr)
+      })   
     }
   },[smartContract])
 
   
 
   function connect2Wallet(){
-    /** ======== TODO 1 ======== */
+    /** ======== TODO 1-1 ======== */
   }
 
   async function checkIfConnect(){
-    /** ======== TODO 1-1 ======== */
+    /** ======== TODO 1-2 ======== */
 
 }
 
@@ -54,7 +64,7 @@ function App() {
     if(!smartContract){
       alert("Please connect to wallet first")
     }
-    /** ======= TODO 3 ======== */
+    /** ======= TODO 3-1 ======== */
     
     
   }

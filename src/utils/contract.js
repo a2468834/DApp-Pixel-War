@@ -11,7 +11,7 @@ export default class SmartContract{
     }
     async draw(index, color){
         let message = 'Draw success'
-        /** ======= TODO 3-1 ======== */
+        /** ======= TODO 3-2 ======== */
 
 
         return message
@@ -19,17 +19,6 @@ export default class SmartContract{
 
     async getCanvas(){
        /** TODO 2-1 */
-    }
-
-    async _checkDrawEvent(index,color){
-        const connectedContract = new ethers.Contract(this.contract_address,this.abi,this.provider)
-        connectedContract.on("Draw",(address,_index,_color)=>{
-            if(_index == index && _color == color) {
-                console.log("Got the event")
-                console.log(address,_index,_color)
-                return true
-            } 
-        })
     }
 }
 
