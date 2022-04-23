@@ -61,7 +61,7 @@ function App() {
         setAccount(result[0])
       })
     } else {
-      console.log("Please install metamask")
+      alert("Please install metamask")
     }
   }
 
@@ -69,16 +69,18 @@ function App() {
     
     const color = selectedColor.replace('#','0x')
     const index = row*CANVAS_SIZE + col
-    // const _canvas = canvas
-    // _canvas[row][col] = selectedColor
-    // setCanvas(_canvas)
+    
 
     if(!smartContract){
       alert("Please connect to wallet first")
     }
     const result = await smartContract.draw(index,color)
+    if(result == 'Draw success'){
+      const _canvas = canvas
+      _canvas[row][col] = selectedColor
+      setCanvas(_canvas)
+    }
     alert(result)
-    
     
   }
 

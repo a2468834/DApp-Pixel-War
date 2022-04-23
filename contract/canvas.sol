@@ -10,6 +10,7 @@ contract Canvas {
     event Draw(address indexed painter, uint32 index, bytes3 color);
 
     function draw(uint8 index, bytes3 color) external{
+        require(isPaintable(index),"Current pixel on 5 min cooldown."); 
         canvas[index] = color;
         draw_time[index] = block.timestamp;
         emit Draw(msg.sender,index,color);
@@ -21,5 +22,13 @@ contract Canvas {
             _canvas[i] = canvas[i];
         }
         return _canvas;
+    }
+
+    function isPaintable(uint32 index) public view returns(bool) {
+        if (block.timestamp - draw_time[index] > 5 minutes) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

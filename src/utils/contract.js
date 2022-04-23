@@ -11,15 +11,21 @@ export default class SmartContract{
     }
     async draw(index, color){
         const connectedContract = new ethers.Contract(this.contract_address,this.abi,this.signer)
-        
-        let message = 'Draw success'
-
-        try {
-            await connectedContract.draw(index, color)
+                try {
+            const tx_response = await connectedContract.draw(index, color)
+            console.log("tx_response",tx_response)
+            const tx_receipt = await tx_response.wait()
+            console.log("tx_receipt",tx_receipt)
+            if(!tx_receipt.status){
+               return 'the transaction has been reverted'
+            }
+            else {
+                return 'Draw success'
+            }
         } catch ({error}) {
-            message=error.message.split('reverted: ')[1]
+            return error.message
         }
-        return message
+        
     }
 
     async getCanvas(){
