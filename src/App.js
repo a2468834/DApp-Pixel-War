@@ -3,7 +3,6 @@ import { TwitterPicker } from 'react-color';
 import { useState,useEffect } from 'react';
 import SmartContract from './utils/contract.js';
 
-
 // Constants
 const CANVAS_SIZE = 15;
 const init2DArray = (dim1, dim2, fill_value) => {
